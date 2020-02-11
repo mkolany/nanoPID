@@ -78,7 +78,7 @@ try:
        
 finally:
     sensor.initializer.GPIO.cleanup()
-    heat_pwm.ChangeDutyCycle(0)
+    sensor.initializer.GPIO.heat_pwm.ChangeDutyCycle(0)
 
 
     fig, ax = plt.subplots(2,1)
