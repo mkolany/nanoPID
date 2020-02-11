@@ -16,7 +16,8 @@ def zapisz(measured_temp, duty, set_temp):
     
 #### pid
 
-from PID import update
+import PID
+
 Duty_min=0
 Duty_max=100
 set_temp = 30
