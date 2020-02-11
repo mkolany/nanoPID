@@ -77,7 +77,7 @@ try:
 
        
 finally:
-    GPIO.cleanup()
+    sensor.initializer.GPIO.cleanup()
     heat_pwm.ChangeDutyCycle(0)
 
 
