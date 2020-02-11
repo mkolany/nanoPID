@@ -30,6 +30,14 @@ measured_temp = 0
 p_term = 0
 i_term = 0 
 d_term = 0
+
+
+ku = 4
+pu = 1
+kp = 0.45*ku
+ki = 1.2*kp/pu
+kd = 0
+
 print("Duty range: [%d, %d]"%(Duty_min, Duty_max))
 
 print("PID constants: Kp=%d, Ki=%d, Kd=%d"%(kp,ki,kd))
