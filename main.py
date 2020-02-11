@@ -16,8 +16,7 @@ def zapisz(measured_temp, duty, set_temp):
     
 #### pid
 
-import PID
-
+from PID import update
 Duty_min=0
 Duty_max=100
 set_temp = 30
@@ -62,7 +61,7 @@ try:
                 old_time = now
                 measured_temp = sensor.initializer.value
                 
-                duty = PID.update(old_time, old_error, measured_temp, set_temp)
+                duty = PID.update.update(old_time, old_error, measured_temp, set_temp)
                 heat_pwm.ChangeDutyCycle(duty)
 
                 Temp_lista.append(measured_temp)
