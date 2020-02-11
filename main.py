@@ -61,7 +61,7 @@ try:
                 old_time = now
                 measured_temp = sensor.initializer.value
                 
-                duty = sensor.initializer.update(old_time, old_error, measured_temp, set_temp)
+                duty = PID.update(old_time, old_error, measured_temp, set_temp)
                 heat_pwm.ChangeDutyCycle(duty)
 
                 Temp_lista.append(measured_temp)
