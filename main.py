@@ -59,7 +59,7 @@ try:
             now = time.time()*1000.0
             if now > old_time + 1:
                 old_time = now
-                measured_temp = sensor.initializer.value()
+                measured_temp = sensor.initializer.value
                 
                 duty = update(old_time, old_error, measured_temp, set_temp)
                 heat_pwm.ChangeDutyCycle(duty)
