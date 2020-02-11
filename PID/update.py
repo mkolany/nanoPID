@@ -1,9 +1,12 @@
 import PID.constants
 import PID.constrain
 
-kp = constants.kp
-ki = constants.ki
-kd = constants.kd
+ku = 4
+pu = 1
+kp = 0.45*ku
+ki = 1.2*kp/pu
+kd = 0
+
 
 def update(old_time, old_error, measured_temp, set_temp):   # (6)
     now = time.time()               
