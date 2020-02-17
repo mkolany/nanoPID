@@ -142,9 +142,9 @@ print("\nSetting it up (this is quite fast)")
 
 Keithley.write('*RST') 
 
-Keithley.write('TRACe:MAKE "voltMeasBuffer", 10')
+Keithley.write('TRACe:MAKE "voltMeasBuffer", 18')
 Keithley.write('TRACE:FILL:MODE CONT, "voltMeasBuffer"')
-Keithley.write('TRACe:MAKE "ohmMeasBuffer", 10')
+Keithley.write('TRACe:MAKE "ohmMeasBuffer", 18')
 Keithley.write('TRACE:FILL:MODE CONT, "ohmMeasBuffer"')
 
 
