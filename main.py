@@ -62,7 +62,11 @@ try:
                 measured_temp = sensor.initializer.value
                 
                 duty = update.update(old_time, old_error, measured_temp, set_temp)
+<<<<<<< HEAD
                 heat_pwm.ChangeDutyCycle(duty)
+=======
+                sensor.initializer.heat_pwm.ChangeDutyCycle(duty)
+>>>>>>> 926a6e465bc41179832e81bbbefbef1f43cb2d4b
 
                 Temp_lista.append(measured_temp)
                 Duty_lista.append(duty)
