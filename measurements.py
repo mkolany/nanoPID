@@ -111,14 +111,12 @@ def voltMeas():
 	Keithley.write('OUTPUT:STATE ON')
 	Keithley.write('COUNT 1')
 	
-	
-
 	return (Keithley.query('READ? "voltMeasBuffer", READ'))
 
 def resMeas():
 	Keithley.write('SENSE:FUNCTION "RESISTANCE"')
 	Keithley.write('SENSE:RESISTANCE:RSENSE ON')
-	Keithley.write('OUTPUT ON')
+	Keithley.write('OUTPUT:STATE ON')
 	Keithley.write('COUNT 1')
 
 	return (Keithley.query('READ? "ohmMeasBuffer", READ'))
@@ -140,7 +138,7 @@ print(Keithley.query('*IDN?'))
 
 print("\nSetting it up (this is quite fast)")
 
-Keithley.write('*RST') 
+Keithley.write('*RST')
 
 Keithley.write('TRACe:MAKE "voltMeasBuffer", 18')
 Keithley.write('TRACE:FILL:MODE CONT, "voltMeasBuffer"')
@@ -167,7 +165,7 @@ old_time2 = time.time()
 try:         
     while True:
 
-        if set_temp < 201 :
+        if set_temp <= 200 :
             # pomiar temperatury (co 1000 ms)
             now = time.time()
             if now > old_time + 1:
@@ -191,8 +189,8 @@ try:
                 if now > old_time2 + 30:
                 	old_time2 = now
 
-                	Mvolt=voltMeas()
                 	Mresi=resMeas()
+                	Mvolt=voltMeas()
 	                
 	                beep('COC')
 
@@ -200,7 +198,8 @@ try:
             else:
                 old_time2=now
 
-
+        if set_temp > 200 :
+            break
        
 finally:
     GPIO.cleanup()
