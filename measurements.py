@@ -111,7 +111,7 @@ def voltMeas():
 	Keithley.write('OUTPUT:STATE ON')
 	Keithley.write('COUNT 1')
 	
-	return (Keithley.query('READ? "voltMeasBuffer", READ'))
+	return (Keithley.query('READ?'))
 
 def resMeas():
 	Keithley.write('SENSE:FUNCTION "RESISTANCE"')
@@ -119,7 +119,7 @@ def resMeas():
 	Keithley.write('OUTPUT:STATE ON')
 	Keithley.write('COUNT 1')
 
-	return (Keithley.query('READ? "ohmMeasBuffer", READ'))
+	return (Keithley.query('READ?'))
 
 ########## START ######################################
 
@@ -139,11 +139,6 @@ print(Keithley.query('*IDN?'))
 print("\nSetting it up (this is quite fast)")
 
 Keithley.write('*RST')
-
-Keithley.write('TRACe:MAKE "voltMeasBuffer", 18')
-Keithley.write('TRACE:FILL:MODE CONT, "voltMeasBuffer"')
-Keithley.write('TRACe:MAKE "ohmMeasBuffer", 18')
-Keithley.write('TRACE:FILL:MODE CONT, "ohmMeasBuffer"')
 
 
 beep('CEC')
