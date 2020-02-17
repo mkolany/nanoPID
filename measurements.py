@@ -111,22 +111,17 @@ def voltMeas():
 	Keithley.write('OUTPUT:STATE ON')
 	Keithley.write('COUNT 1')
 	
-	Keithley.query('READ? "voltMeasBuffer", FORM, DATE, READ')
+	
 
-	return (Keithley.query('TRAC:DATA? 1, 1, "voltMeasBuffer", READING'))
+	return (Keithley.query('READ? "voltMeasBuffer", FORM, DATE, READ'))
 
 def resMeas():
 	Keithley.write('SENSE:FUNCTION "RESISTANCE"')
 	Keithley.write('SENSE:RESISTANCE:RSENSE ON')
 	Keithley.write('OUTPUT ON')
 	Keithley.write('COUNT 1')
-	
 
-	
-	Keithley.query('READ? "ohmMeasBuffer", FORM, DATE, READ')
-
-	Keithley.write('OUTPUT OFF')
-	return (Keithley.query('TRAC:DATA? 1, 1, "ohmMeasBuffer", READING'))
+	return (Keithley.query('READ? "ohmMeasBuffer", FORM, DATE, READ'))
 
 ########## START ######################################
 
