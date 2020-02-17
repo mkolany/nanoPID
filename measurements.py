@@ -117,7 +117,7 @@ def voltMeas():
 
 def resMeas():
 	Keithley.write('SENSE:FUNCTION "RESISTANCE"')
-	#Keithley.write('SENSE:RESISTANCE:RSENSE ON')
+	Keithley.write('SENSE:RESISTANCE:RSENSE ON')
 	Keithley.write('OUTPUT ON')
 	Keithley.write('COUNT 1')
 	
