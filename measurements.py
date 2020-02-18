@@ -93,17 +93,17 @@ def update_pid():   # (6)
 ### Keithley
 
 def beep(notes):
-    noteToHz = {
-        'A': 440,
-        'B': 493.88,
-        'C': 523.25,
-        'D': 587.33,
-        'E': 659.25,
-        'F': 698.46,
-        'G': 783.99
-    }
-    for note in notes:
-        Keithley.write('SYSTEM:BEEP %s,0.1' %noteToHz.get(str(note).upper(), '20'))
+	noteToHz = {
+		'A': 440,
+		'B': 493.88,
+		'C': 523.25,
+		'D': 587.33,
+		'E': 659.25,
+		'F': 698.46,
+		'G': 783.99
+	}
+	for note in notes:
+		Keithley.write('SYSTEM:BEEP %s,0.1' %noteToHz.get(str(note).upper(), '20'))
 
 def voltMeas():
     Keithley.write('*RST')
@@ -111,7 +111,7 @@ def voltMeas():
     Keithley.write('SENSE:VOLTAGE:RSENSE ON')
     Keithley.write('OUTPUT:STATE ON')
     Keithley.write('COUNT 1')
-    
+	
     return (Keithley.query('READ?'))
 
 def resMeas():
@@ -153,7 +153,7 @@ print("PID constants: Kp=%f, Ki=%f, Kd=%f"%(kp,ki,kd))
 
 print("Set temperature: ",set_temp)
 
-zapisz('','','','','') # testowy zapis
+zapisz('Temp','Duty','SetTemp','V','R') # testowy zapis
 
 input("\nPress enter to continue\r")
 
@@ -184,18 +184,19 @@ try:
 
             if all(abs(temp-set_temp)<EPSILON for temp in Temp_lista[-10:]):
                 if now > old_time2 + 30:
-                    old_time2 = now
+                	old_time2 = now
 
-                    Mresi=resMeas()
-                    Mvolt=voltMeas()
+                	Mresi=resMeas()
+                	Mvolt=voltMeas()
 
-                    beep('COC')
+	                beep('COC')
 
-                    set_temp = set_temp + 10
+	                set_temp = set_temp + 10
             else:
                 old_time2=now
 
         if set_temp > 200 :
+            print("Done")
             break
        
 finally:
