@@ -93,33 +93,35 @@ def update_pid():   # (6)
 ### Keithley
 
 def beep(notes):
-	noteToHz = {
-		'A': 440,
-		'B': 493.88,
-		'C': 523.25,
-		'D': 587.33,
-		'E': 659.25,
-		'F': 698.46,
-		'G': 783.99
-	}
-	for note in notes:
-		Keithley.write('SYSTEM:BEEP %s,0.1' %noteToHz.get(str(note).upper(), '20'))
+    noteToHz = {
+        'A': 440,
+        'B': 493.88,
+        'C': 523.25,
+        'D': 587.33,
+        'E': 659.25,
+        'F': 698.46,
+        'G': 783.99
+    }
+    for note in notes:
+        Keithley.write('SYSTEM:BEEP %s,0.1' %noteToHz.get(str(note).upper(), '20'))
 
 def voltMeas():
-	Keithley.write('SENSE:FUNCTION "VOLTAGE"')
-	Keithley.write('SENSE:VOLTAGE:RSENSE ON')
-	Keithley.write('OUTPUT:STATE ON')
-	Keithley.write('COUNT 1')
-	
-	return (Keithley.query('READ?'))
+    Keithley.write('*RST')
+    Keithley.write('SENSE:FUNCTION "VOLTAGE"')
+    Keithley.write('SENSE:VOLTAGE:RSENSE ON')
+    Keithley.write('OUTPUT:STATE ON')
+    Keithley.write('COUNT 1')
+    
+    return (Keithley.query('READ?'))
 
 def resMeas():
-	Keithley.write('SENSE:FUNCTION "RESISTANCE"')
-	Keithley.write('SENSE:RESISTANCE:RSENSE ON')
-	Keithley.write('OUTPUT:STATE ON')
-	Keithley.write('COUNT 1')
+    Keithley.write('*RST')
+    Keithley.write('SENSE:FUNCTION "RESISTANCE"')
+    Keithley.write('SENSE:RESISTANCE:RSENSE ON')
+    Keithley.write('OUTPUT:STATE ON')
+    Keithley.write('COUNT 1')
 
-	return (Keithley.query('READ?'))
+    return (Keithley.query('READ?'))
 
 ########## START ######################################
 
@@ -138,7 +140,7 @@ print(Keithley.query('*IDN?'))
 
 print("\nSetting it up (this is quite fast)")
 
-Keithley.write('*RST')
+#Keithley.write('*RST')
 
 
 beep('CEC')
@@ -182,14 +184,14 @@ try:
 
             if all(abs(temp-set_temp)<EPSILON for temp in Temp_lista[-10:]):
                 if now > old_time2 + 30:
-                	old_time2 = now
+                    old_time2 = now
 
-                	Mresi=resMeas()
-                	Mvolt=voltMeas()
-	                
-	                beep('COC')
+                    Mresi=resMeas()
+                    Mvolt=voltMeas()
 
-	                set_temp = set_temp + 10
+                    beep('COC')
+
+                    set_temp = set_temp + 10
             else:
                 old_time2=now
 
